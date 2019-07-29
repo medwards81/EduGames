@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import calculator from "../calculator.svg";
+import school from "../school.svg";
 
 const Home = () => (
   <div className="Home">
@@ -13,7 +13,7 @@ const Home = () => (
           <Card.Body>
             <Card.Title>
               <img
-                src={calculator}
+                src={school}
                 alt="Calculator icon"
                 style={{
                   width: "25px",
@@ -27,7 +27,7 @@ const Home = () => (
             <Card.Text>
               Let's count how many days we've been in school!
             </Card.Text>
-            <Link className="btn btn-primary" to="/days-in-school">
+            <Link className="btn btn-success" to="/days-in-school">
               Play Game
             </Link>
           </Card.Body>
@@ -41,7 +41,7 @@ const Home = () => (
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </Card.Text>
-            <Link className="btn btn-primary" to="/game">
+            <Link className="btn btn-success" to="/game">
               Play Game
             </Link>
           </Card.Body>
@@ -55,7 +55,7 @@ const Home = () => (
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
             </Card.Text>
-            <Link className="btn btn-primary" to="/game">
+            <Link className="btn btn-success" to="/game">
               Play Game
             </Link>
           </Card.Body>

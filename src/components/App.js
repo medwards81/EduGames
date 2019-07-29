@@ -5,7 +5,8 @@ import Container from "react-bootstrap/Container";
 import Home from "./Home";
 import { AsyncDaysInSchool, AsyncNoMatch } from "../utils/loadableComponents";
 import { Link } from "react-router-dom";
-import logo from "../logo-40x40.png";
+import logoColor from "../logo-color.svg";
+import logoBw from "../logo-bw.svg";
 
 function App() {
   return (
@@ -15,8 +16,12 @@ function App() {
           <Navbar.Brand>
             <h3 style={{ marginLeft: "1em" }}>
               <Link to="/">
-                <img src={logo} alt="EduGames logo" />
-                EduGames
+                <img
+                  src={logoColor}
+                  alt="EduGator logo"
+                  style={{ width: "30px", verticalAlign: "bottom" }}
+                />
+                EduGator
               </Link>
             </h3>
           </Navbar.Brand>
@@ -32,11 +37,11 @@ function App() {
       <footer className="footer">
         &copy;Copyright {new Date().getFullYear()}{" "}
         <img
-          src={logo}
-          alt="EduGames logo"
-          style={{ width: "10px", height: "auto", marginTop: "-3px" }}
+          src={logoColor}
+          alt="EduGator logo"
+          style={{ width: "12px", height: "auto", marginTop: "-3px" }}
         />
-        EduGames.
+        EduGator.
       </footer>
     </div>
   );
