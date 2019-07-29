@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import ErrorBoundary from "./ErrorBoundary";
-import App from "./App";
+import ErrorBoundary from "./components/ErrorBoundary";
+import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
