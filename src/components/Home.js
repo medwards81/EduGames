@@ -16,10 +16,10 @@ const Home = () => (
                 src={school}
                 alt="Calculator icon"
                 style={{
-                  width: "25px",
+                  width: "22px",
                   height: "auto",
                   marginRight: "5px",
-                  verticalAlign: "top"
+                  verticalAlign: "bottom"
                 }}
               />
               Days in School

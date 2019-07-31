@@ -6,7 +6,6 @@ import Home from "./Home";
 import { AsyncDaysInSchool, AsyncNoMatch } from "../utils/loadableComponents";
 import { Link } from "react-router-dom";
 import logoColor from "../logo-color.svg";
-import logoBw from "../logo-bw.svg";
 
 function App() {
   return (
@@ -19,7 +18,11 @@ function App() {
                 <img
                   src={logoColor}
                   alt="EduGator logo"
-                  style={{ width: "30px", verticalAlign: "bottom" }}
+                  style={{
+                    width: "30px",
+                    verticalAlign: "bottom",
+                    marginRight: "4px"
+                  }}
                 />
                 EduGator
               </Link>
