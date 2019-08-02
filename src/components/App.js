@@ -3,7 +3,11 @@ import { Route, Switch } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Home from "./Home";
-import { AsyncDaysInSchool, AsyncNoMatch } from "../utils/loadableComponents";
+import {
+  AsyncDaysInSchool,
+  AsyncWeatherGraph,
+  AsyncNoMatch
+} from "../utils/loadableComponents";
 import { Link } from "react-router-dom";
 import logoColor from "../logo-color.svg";
 
@@ -33,6 +37,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/days-in-school" component={AsyncDaysInSchool} />
+            <Route path="/weather-graph" component={AsyncWeatherGraph} />
             <Route component={AsyncNoMatch} />
           </Switch>
         </Container>

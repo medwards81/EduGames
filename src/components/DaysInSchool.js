@@ -89,7 +89,7 @@ class DaysInSchool extends Component {
   renderUnits = unit => {
     const numUnits = this.state[unit];
 
-    if (this.state.transitionUnit === unit && numUnits == 10) {
+    if (this.state.transitionUnit === unit && numUnits === 10) {
       const unitGroupId = `${unit}-group`;
       let imgSource;
       if (unit === "ones") imgSource = onesGroupImg;
@@ -152,6 +152,10 @@ class DaysInSchool extends Component {
         </Draggable>
       );
     });
+  };
+
+  handleDoubleClick = () => {
+    if (this.state["ones"] < 10) this.addDropped("ones");
   };
 
   render() {
@@ -234,9 +238,7 @@ class DaysInSchool extends Component {
                       <span
                         className="days-in-school-draggable-unit"
                         ref={provided.innerRef}
-                        onDoubleClick={() => {
-                          if (this.state["ones"] < 10) this.addDropped("ones");
-                        }}
+                        onDoubleClick={this.handleDoubleClick}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >

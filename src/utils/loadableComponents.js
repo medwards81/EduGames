@@ -31,6 +31,10 @@ export const AsyncDaysInSchool = MyLoadable({
   loader: () => import("../components/DaysInSchool")
 });
 
+export const AsyncWeatherGraph = MyLoadable({
+  loader: () => import("../components/WeatherGraph")
+});
+
 export const AsyncNoMatch = MyLoadable({
   loader: () => import("../components/NoMatch")
 });
