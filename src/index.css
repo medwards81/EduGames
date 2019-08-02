@@ -14,6 +14,11 @@ body {
   height: 100vh; /* Avoid the IE 10-11 `min-height` bug. */
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -66,7 +71,7 @@ code {
 }
 
 .days-in-school-table {
-  margin-top: 2em;
+  margin-top: 16px;
   table-layout: fixed;
   width: 100%;
 }
@@ -82,18 +87,47 @@ code {
 
 .days-in-school-droppable {
   position: relative;
-  height: 200px;
+  height: 225px;
   border: 1px solid #ccc;
   border-radius: 10px;
+  padding: 10px;
+  overflow: auto;
+  background: #fff;
+}
+
+.days-in-school-droppable > .days-in-school-draggable-unit,
+.days-in-school-droppable > .img-unit-draggable {
+  transform: none !important;
+}
+
+.days-in-school-droppable .img-unit {
+  background: #5f8ad5;
+  margin: 5px;
+  border-radius: 5px;
+  max-width: 95%;
 }
 
 .days-in-school-draggable-unit {
   display: inline-block;
   background: #5f8ad5;
+  border: 2.5px solid #666;
   border-radius: 5px;
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   margin: 5px;
+}
+
+.fade-in {
+  animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media only screen and (max-width: 768px) {

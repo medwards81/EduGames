@@ -1,91 +1,170 @@
-import React, { useState, useCallback } from "react";
+import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Button from "react-bootstrap/Button";
+import hundredsImg from "../hundreds.png";
+import tensImg from "../tens.png";
+import onesGroupImg from "../ones-group.jpg";
+import tensGroupImg from "../tens-group.jpg";
+import { storageTest } from "../utils/localStorage";
 
-const DaysInSchool = ({ history, location, match }) => {
-  const intialState = {
-    hundreds: [],
-    tens: [],
-    ones: []
+class DaysInSchool extends Component {
+  initialState = {
+    hundreds: 0,
+    tens: 0,
+    ones: 0,
+    transitionUnit: null
   };
 
-  const [dropped, setDropped] = useState(intialState);
+  hasLocalStorageSupport = storageTest();
 
-  const addDropped = useCallback(
-    unit => {
-      setDropped({
-        ...dropped,
-        [unit]: [...dropped[unit], 1]
-      });
-    },
-    [dropped]
-  );
+  state = this.initialState;
 
-  const onDragEnd = useCallback(
-    result => {
-      const { destination, source } = result;
-      if (!destination) return;
+  componentDidMount() {
+    if (this.hasLocalStorageSupport) {
+      const storedState = localStorage.getItem("daysInSchool");
+      if (storedState) this.setState(JSON.parse(storedState));
+    }
+  }
 
-      if (
-        destination.droppableId === source.droppableId &&
-        destination.index === source.index
-      )
-        return;
+  componentDidUpdate(prevProps, prevState) {
+    const { transitionUnit } = this.state;
 
-      addDropped(destination.droppableId);
-    },
-    [addDropped]
-  );
+    if (this.hasLocalStorageSupport)
+      localStorage.setItem("daysInSchool", JSON.stringify(this.state));
 
-  const getCount = () => {
+    if (
+      (prevState.transitionUnit === null && transitionUnit !== null) ||
+      prevState.transitionUnit !== transitionUnit
+    ) {
+      setTimeout(
+        () =>
+          this.setState({
+            ...this.state,
+            transitionUnit: transitionUnit ? transitionUnit.toLowerCase() : null
+          }),
+        500
+      );
+    }
+  }
+
+  addDropped = (unit, draggableId) => {
+    const newState = {
+      ...this.state
+    };
+
+    newState[unit] += 1;
+    if (newState[unit] === 10) newState.transitionUnit = unit.toUpperCase();
+
+    if (unit === "tens") newState.ones = 0;
+    else if (unit === "hundreds") newState.tens = 0;
+
+    this.setState(newState);
+  };
+
+  onDragEnd = result => {
+    const { destination, source } = result;
+    if (!destination) return;
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    )
+      return;
+
+    this.addDropped(destination.droppableId);
+  };
+
+  getCount = () => {
+    const { hundreds, tens, ones } = this.state;
     let sum = 0;
-    sum += dropped.hundreds.length * 100;
-    sum += dropped.tens.length * 10;
-    sum += dropped.ones.length * 1;
+    sum += hundreds * 100;
+    sum += tens * 10;
+    sum += ones * 1;
 
     return sum > 0 ? sum : null;
   };
 
-  const reset = () => setDropped(intialState);
+  reset = () => this.setState(this.initialState);
 
-  const renderUnits = unit => {
-    return dropped[unit].map((u, i) => {
-      const draggableId = `${unit}-${i}`;
+  renderUnits = unit => {
+    const numUnits = this.state[unit];
+
+    if (this.state.transitionUnit === unit && numUnits == 10) {
+      const unitGroupId = `${unit}-group`;
+      let imgSource;
+      if (unit === "ones") imgSource = onesGroupImg;
+      else if (unit === "tens") imgSource = tensGroupImg;
       return (
-        <Draggable
-          draggableId={draggableId}
-          index={i}
-          key={draggableId}
-          isDragDisabled={unit !== "ones"}
-        >
+        <Draggable draggableId={unitGroupId} index={0}>
           {(provided, snapshot) => (
-            <span
-              key={i}
-              className="days-in-school-draggable-unit float-left"
+            <img
+              className="img-unit unit fade-in"
+              src={imgSource}
+              alt={`${unit} block`}
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
-            >
-              &nbsp;
-            </span>
+            />
           )}
+        </Draggable>
+      );
+    }
+
+    const unitArr = [];
+    for (let i = 1; i <= numUnits; i++) {
+      unitArr.push(i);
+    }
+
+    return unitArr.map((d, i) => {
+      const unitId = `${unit}-${i}`;
+      return (
+        <Draggable
+          draggableId={unitId}
+          index={i}
+          key={unitId}
+          isDragDisabled={true}
+        >
+          {(provided, snapshot) => {
+            const draggable =
+              unit === "ones" ? (
+                <span
+                  key={i}
+                  className="days-in-school-draggable-unit float-left"
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                >
+                  &nbsp;
+                </span>
+              ) : (
+                <img
+                  key={i}
+                  src={unit === "tens" ? tensImg : hundredsImg}
+                  className="img-unit img-unit-draggable"
+                  alt="unit group"
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                />
+              );
+            return draggable;
+          }}
         </Draggable>
       );
     });
   };
 
-  const hundredsLen = dropped.hundreds.length;
-  const tensLen = dropped.tens.length;
-  const onesLen = dropped.ones.length;
+  render() {
+    const { transitionUnit } = this.state;
+    const units = ["hundreds", "tens", "ones"];
 
-  return (
-    <div className="DaysInSchool">
-      <DragDropContext onDragEnd={onDragEnd}>
-        <h3 className="days-in-school">
-          Today, we have been in school for{" "}
-          <span className="days-in-school-num">{getCount()}</span> days!
-        </h3>
-        <div className="table-responsive">
+    return (
+      <div className="DaysInSchool">
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <h3 className="days-in-school">
+            Today, we have been in school for{" "}
+            <span className="days-in-school-num">{this.getCount()}</span> days!
+          </h3>
           <table className="days-in-school-table table table-bordered">
             <thead className="thead-light">
               <tr>
@@ -96,68 +175,91 @@ const DaysInSchool = ({ history, location, match }) => {
             </thead>
             <tbody>
               <tr>
-                {["hundreds", "tens", "ones"].map((category, i) => (
-                  <td key={i}>
-                    <Droppable droppableId={category} direction="horizontal">
-                      {(provided, snapshot) => (
-                        <div
-                          className="days-in-school-droppable"
-                          ref={provided.innerRef}
-                          {...provided.droppableProps}
-                        >
-                          {renderUnits(category)}
-                          {provided.placeholder}
-                        </div>
-                      )}
-                    </Droppable>
-                  </td>
-                ))}
+                {units.map((unit, i) => {
+                  const isTenUnits = this.state[unit] === 10;
+                  let dropType = unit;
+                  if (
+                    unit === "ones" &&
+                    transitionUnit === "ones" &&
+                    isTenUnits
+                  ) {
+                    dropType = "ones-group";
+                  } else if (unit === "tens") {
+                    dropType =
+                      transitionUnit === "tens" && isTenUnits
+                        ? "tens-group"
+                        : "ones-group";
+                  } else if (unit === "hundreds") dropType = "tens-group";
+                  return (
+                    <td key={i}>
+                      <Droppable
+                        droppableId={unit}
+                        direction="horizontal"
+                        type={dropType}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            className="days-in-school-droppable"
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                          >
+                            {this.renderUnits(unit)}
+                            {provided.placeholder}
+                          </div>
+                        )}
+                      </Droppable>
+                    </td>
+                  );
+                })}
               </tr>
             </tbody>
             <tfoot>
               <tr>
-                <th>{(hundredsLen && hundredsLen) || "-"}</th>
-                <th>{(tensLen && tensLen) || "-"}</th>
-                <th>{(onesLen && onesLen) || "-"}</th>
+                {units.map((unit, i) => (
+                  <th key={i}>{this.state[unit]}</th>
+                ))}
               </tr>
             </tfoot>
           </table>
-        </div>
-        <div className="text-center">
-          <Droppable droppableId="droppableUnit">
-            {(provided, snapshot) => (
-              <div
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-                style={{ height: "55px" }}
-              >
-                <Draggable draggableId="unit" index={0} key="unit">
-                  {(provided, snapshot) => (
-                    <span
-                      className="days-in-school-draggable-unit"
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      &nbsp;
-                    </span>
-                  )}
-                </Draggable>
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-          <Button
-            variant="success"
-            style={{ marginTop: "2em", width: "100px" }}
-            onClick={reset}
-          >
-            Reset
-          </Button>
-        </div>
-      </DragDropContext>
-    </div>
-  );
-};
+          <div className="text-center">
+            <Droppable droppableId="droppableUnit" type="ones">
+              {(provided, snapshot) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                  style={{ height: "55px" }}
+                >
+                  <Draggable draggableId="unit" index={0} key="unit">
+                    {(provided, snapshot) => (
+                      <span
+                        className="days-in-school-draggable-unit"
+                        ref={provided.innerRef}
+                        onDoubleClick={() => {
+                          if (this.state["ones"] < 10) this.addDropped("ones");
+                        }}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        &nbsp;
+                      </span>
+                    )}
+                  </Draggable>
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+            <Button
+              variant="success"
+              style={{ marginTop: "2em", width: "100px" }}
+              onClick={this.reset}
+            >
+              Reset
+            </Button>
+          </div>
+        </DragDropContext>
+      </div>
+    );
+  }
+}
 
 export default DaysInSchool;
