@@ -47,7 +47,7 @@ class DaysInSchool extends Component {
     }
   }
 
-  addDropped = (unit, draggableId) => {
+  addDropped = unit => {
     const newState = {
       ...this.state
     };
@@ -165,7 +165,7 @@ class DaysInSchool extends Component {
     return (
       <div className="DaysInSchool">
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <h3 className="days-in-school">
+          <h3 className="page-header">
             Today, we have been in school for{" "}
             <span className="days-in-school-num">{this.getCount()}</span> days!
           </h3>
@@ -208,7 +208,9 @@ class DaysInSchool extends Component {
                             {...provided.droppableProps}
                           >
                             {this.renderUnits(unit)}
-                            {provided.placeholder}
+                            <div style={{ display: "none" }}>
+                              {provided.placeholder}
+                            </div>
                           </div>
                         )}
                       </Droppable>
@@ -246,7 +248,7 @@ class DaysInSchool extends Component {
                       </span>
                     )}
                   </Draggable>
-                  {provided.placeholder}
+                  <div style={{ display: "none" }}>{provided.placeholder}</div>
                 </div>
               )}
             </Droppable>

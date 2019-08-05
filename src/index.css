@@ -28,6 +28,13 @@ th {
   text-align: center;
 }
 
+footer {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Likely future */
+}
+
 .content {
   flex: 1 0 auto; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
 }
@@ -62,7 +69,7 @@ th {
   width: 86%;
 }
 
-.days-in-school {
+.page-header {
   color: #db9e23;
   text-align: center;
 }
@@ -123,6 +130,74 @@ th {
 
 .fade-in {
   animation: fadein 2s;
+}
+
+.fill-in-the-blank {
+  border-bottom: 2px solid;
+  display: inline-block;
+  text-align: center;
+  width: 75px;
+  height: 50px;
+  margin-bottom: -12px;
+}
+
+.fill-in-the-blank > .weather-draggable {
+  transform: none !important;
+}
+
+.weather-table.table-bordered {
+  border: 2px solid #85878a;
+  margin-top: 20px;
+}
+.weather-table.table-bordered > thead > tr > th,
+.hundreds-chart.table-bordered > thead > tr > th {
+  border: 2px solid #85878a;
+}
+.weather-table.table-bordered > tbody > tr > td,
+.hundreds-chart.table-bordered > tbody > tr > td {
+  border: 2px solid #85878a;
+}
+.weather-table.table-bordered > tfoot > tr > th,
+.hundreds-chart.table-bordered > tfoot > tr > th {
+  border: 2px solid #85878a;
+}
+
+.weather-droppable {
+  margin-bottom: 16px;
+}
+
+.weather-draggable {
+  display: inline-block;
+  width: 125px;
+  background: #fff;
+  margin-bottom: 8px;
+  color: #212529;
+  font-size: 16px;
+}
+
+.border-2 {
+  border-width: 2px !important;
+}
+
+.hundreds-chart td {
+  text-align: center;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.hundreds-chart .number {
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Likely future */
+}
+
+.hide {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
 }
 
 @keyframes fadein {

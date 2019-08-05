@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import school from "../school.svg";
 import sunny from "../sunny.svg";
+import hundredsChart from "../hundreds-chart.svg";
 
 const Home = () => (
   <div className="Home">
@@ -60,12 +61,23 @@ const Home = () => (
       <Col>
         <Card style={{ width: "18rem" }}>
           <Card.Body>
-            <Card.Title>Card Title</Card.Title>
+            <Card.Title>
+              <img
+                src={hundredsChart}
+                alt="Chart icon"
+                style={{
+                  width: "25px",
+                  height: "auto",
+                  marginRight: "5px",
+                  verticalAlign: "bottom"
+                }}
+              />
+              Hundreds Chart
+            </Card.Title>
             <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              Let's reveal who has stolen numbers from the hundreds chart!
             </Card.Text>
-            <Link className="btn btn-success" to="/game">
+            <Link className="btn btn-success" to="/hundreds-chart">
               Play Game
             </Link>
           </Card.Body>

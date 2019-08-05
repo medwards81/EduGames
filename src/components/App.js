@@ -6,6 +6,7 @@ import Home from "./Home";
 import {
   AsyncDaysInSchool,
   AsyncWeatherGraph,
+  AsyncHundredsChart,
   AsyncNoMatch
 } from "../utils/loadableComponents";
 import { Link } from "react-router-dom";
@@ -38,6 +39,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/days-in-school" component={AsyncDaysInSchool} />
             <Route path="/weather-graph" component={AsyncWeatherGraph} />
+            <Route path="/hundreds-chart" component={AsyncHundredsChart} />
             <Route component={AsyncNoMatch} />
           </Switch>
         </Container>
@@ -47,7 +49,12 @@ function App() {
         <img
           src={logoColor}
           alt="EduGator logo"
-          style={{ width: "12px", height: "auto", marginTop: "-3px" }}
+          style={{
+            width: "12px",
+            height: "auto",
+            marginTop: "-3px",
+            marginRight: "2px"
+          }}
         />
         EduGator.
       </footer>

@@ -35,6 +35,10 @@ export const AsyncWeatherGraph = MyLoadable({
   loader: () => import("../components/WeatherGraph")
 });
 
+export const AsyncHundredsChart = MyLoadable({
+  loader: () => import("../components/HundredsChart")
+});
+
 export const AsyncNoMatch = MyLoadable({
   loader: () => import("../components/NoMatch")
 });
