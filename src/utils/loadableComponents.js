@@ -39,6 +39,10 @@ export const AsyncHundredsChart = MyLoadable({
   loader: () => import("../components/HundredsChart")
 });
 
+export const AsyncMorningMessage = MyLoadable({
+  loader: () => import("../components/MorningMessage")
+});
+
 export const AsyncNoMatch = MyLoadable({
   loader: () => import("../components/NoMatch")
 });

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import school from "../school.svg";
 import sunny from "../sunny.svg";
 import hundredsChart from "../hundreds-chart.svg";
+import speaker from "../loudspeaker.svg";
 
 const Home = () => (
   <div className="Home">
@@ -30,7 +31,7 @@ const Home = () => (
               Let's count how many days we've been in school!
             </Card.Text>
             <Link className="btn btn-success" to="/days-in-school">
-              Play Game
+              Play
             </Link>
           </Card.Body>
         </Card>
@@ -53,7 +54,7 @@ const Home = () => (
             </Card.Title>
             <Card.Text>Let's keep track of the weather!</Card.Text>
             <Link className="btn btn-success" to="/weather-graph">
-              Play Game
+              Play
             </Link>
           </Card.Body>
         </Card>
@@ -78,11 +79,36 @@ const Home = () => (
               Let's reveal who has stolen numbers from the hundreds chart!
             </Card.Text>
             <Link className="btn btn-success" to="/hundreds-chart">
-              Play Game
+              Play
             </Link>
           </Card.Body>
         </Card>
-      </Col>{" "}
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+        <Card style={{ width: "18rem" }}>
+          <Card.Body>
+            <Card.Title>
+              <img
+                src={speaker}
+                alt="Message icon"
+                style={{
+                  width: "24px",
+                  height: "auto",
+                  marginRight: "5px",
+                  verticalAlign: "bottom"
+                }}
+              />
+              Morning Message
+            </Card.Title>
+            <Card.Text>Let's start our day with a morning message!</Card.Text>
+            <Link className="btn btn-success" to="/morning-message">
+              Play
+            </Link>
+          </Card.Body>
+        </Card>
+      </Col>
     </Row>
   </div>
 );

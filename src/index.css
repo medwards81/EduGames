@@ -35,6 +35,12 @@ footer {
   user-select: none; /* Likely future */
 }
 
+textarea {
+  outline: none;
+  resize: none;
+  overflow: auto;
+}
+
 .content {
   flex: 1 0 auto; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
 }
@@ -72,6 +78,7 @@ footer {
 .page-header {
   color: #db9e23;
   text-align: center;
+  margin-bottom: 1em;
 }
 
 .days-in-school-num {
@@ -120,12 +127,8 @@ footer {
 
 .days-in-school-draggable-unit {
   display: inline-block;
-  background: #5f8ad5;
-  border: 2.5px solid #666;
-  border-radius: 5px;
-  width: 50px;
-  height: 50px;
-  margin: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 .fade-in {
@@ -200,6 +203,11 @@ footer {
   visibility: hidden;
 }
 
+.ghosty {
+  color: white !important;
+  border-bottom: 2px solid #ccc !important;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
@@ -212,5 +220,12 @@ footer {
 @media only screen and (max-width: 768px) {
   .card {
     margin: 0 auto 16px auto;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .fill-in-the-blank {
+    display: block;
+    margin: 0 auto;
   }
 }

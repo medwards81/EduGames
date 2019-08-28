@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Button from "react-bootstrap/Button";
+import onesImg from "../unit.jpg";
 import hundredsImg from "../hundreds.png";
 import tensImg from "../tens.png";
 import onesGroupImg from "../ones-group.jpg";
@@ -129,12 +130,12 @@ class DaysInSchool extends Component {
               unit === "ones" ? (
                 <span
                   key={i}
-                  className="days-in-school-draggable-unit float-left"
+                  className="days-in-school-draggable-unit"
                   ref={provided.innerRef}
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
                 >
-                  &nbsp;
+                  <img src={onesImg} alt="" />
                 </span>
               ) : (
                 <img
@@ -238,13 +239,13 @@ class DaysInSchool extends Component {
                   <Draggable draggableId="unit" index={0} key="unit">
                     {(provided, snapshot) => (
                       <span
-                        className="days-in-school-draggable-unit"
+                        className="days-in-school-draggable-unitt"
                         ref={provided.innerRef}
                         onDoubleClick={this.handleDoubleClick}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        &nbsp;
+                        <img src={onesImg} alt="" />
                       </span>
                     )}
                   </Draggable>
