@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import Button from "react-bootstrap/Button";
 import { storageTest } from "../utils/localStorage";
 
 class HundredsChart extends PureComponent {
@@ -14,6 +15,8 @@ class HundredsChart extends PureComponent {
   hasLocalStorageSupport = storageTest();
 
   clickTimeout = null;
+
+  reset = () => this.setState(this.initState);
 
   componentDidMount() {
     if (this.hasLocalStorageSupport) {
@@ -150,6 +153,15 @@ class HundredsChart extends PureComponent {
         <table className="hundreds-chart table table-bordered">
           <tbody>{this.genTableBody()}</tbody>
         </table>
+        <div className="text-center">
+          <Button
+            variant="success"
+            style={{ marginTop: "1em", width: "100px" }}
+            onClick={this.reset}
+          >
+            Reset
+          </Button>
+        </div>
       </div>
     );
   }

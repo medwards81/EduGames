@@ -6,12 +6,15 @@ import { storageTest } from "../utils/localStorage";
 import ghost from "../ghost.svg";
 
 class MorningMessage extends PureComponent {
+  morningMode = this.props.match.params.mode;
+
   initState = {
     words: [],
     currentColor: "red",
     isEditMode: false,
     fontSizeEm: 1.5,
-    isGhostyMode: false
+    isGhostyMode: false,
+    morningMode: this.morningMode
   };
 
   state = this.initState;
@@ -20,9 +23,11 @@ class MorningMessage extends PureComponent {
 
   wordsRef = React.createRef();
 
+  lsKey = this.morningMode.charAt(0).toUpperCase() + this.morningMode.slice(1);
+
   componentDidMount() {
     if (this.hasLocalStorageSupport) {
-      const words = localStorage.getItem("MorningMessageWords");
+      const words = localStorage.getItem(`Morning${this.lsKey}Words`);
       if (words) {
         const wordsArr = JSON.parse(words);
         if (wordsArr.length)
@@ -36,7 +41,7 @@ class MorningMessage extends PureComponent {
   componentDidUpdate(prevProps, prevState) {
     const { words } = this.state;
     if (this.hasLocalStorageSupport) {
-      localStorage.setItem("MorningMessageWords", JSON.stringify(words));
+      localStorage.setItem(`Morning${this.lsKey}Words`, JSON.stringify(words));
     }
   }
 
@@ -74,7 +79,7 @@ class MorningMessage extends PureComponent {
   };
 
   setGhostyMode = e => {
-    const { isGhostyMode, currentColor } = this.state;
+    const { isGhostyMode } = this.state;
     this.setState({
       isGhostyMode: !isGhostyMode,
       currentColor: null
@@ -125,7 +130,7 @@ class MorningMessage extends PureComponent {
     } = this.state;
     const contentStyle = {
       width: "100%",
-      height: "18rem",
+      height: "26rem",
       borderRadius: "8px",
       fontSize: `${fontSizeEm}em`,
       padding: "16px",
@@ -133,7 +138,7 @@ class MorningMessage extends PureComponent {
     };
     return (
       <div className="MorningMessage">
-        <h3 className="page-header">Morning Message</h3>
+        <h3 className="page-header">Morning {this.lsKey}</h3>
         <div style={{ marginBottom: "1em" }}>
           {isEditMode ? (
             <div className="text-right">
@@ -201,7 +206,6 @@ class MorningMessage extends PureComponent {
                       key={color}
                       src={ghost}
                       alt="ghosty"
-                      title="hide words"
                       style={{
                         height: "40px",
                         width: "40px",

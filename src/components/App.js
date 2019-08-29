@@ -41,7 +41,7 @@ function App() {
             <Route path="/days-in-school" component={AsyncDaysInSchool} />
             <Route path="/weather-graph" component={AsyncWeatherGraph} />
             <Route path="/hundreds-chart" component={AsyncHundredsChart} />
-            <Route path="/morning-message" component={AsyncMorningMessage} />
+            <Route path="/morning/:mode" component={AsyncMorningMessage} />
             <Route component={AsyncNoMatch} />
           </Switch>
         </Container>

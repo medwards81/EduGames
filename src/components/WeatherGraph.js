@@ -64,10 +64,10 @@ class WeatherGraph extends PureComponent {
 
   cellColorByWeather = weather => {
     const cellColor = {
-      sunny: "orange",
-      cloudy: "lightgray",
-      rainy: "dodgerblue",
-      snowy: "deepskyblue"
+      sunny: "#ffff7f",
+      cloudy: "#038fff",
+      rainy: "#1ed760",
+      snowy: "#f14517"
     };
 
     return cellColor[weather];

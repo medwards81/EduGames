@@ -7,6 +7,8 @@ import school from "../school.svg";
 import sunny from "../sunny.svg";
 import hundredsChart from "../hundreds-chart.svg";
 import speaker from "../loudspeaker.svg";
+import poem from "../poem.svg";
+import calendar from "../calendar.svg";
 
 const Home = () => (
   <div className="Home">
@@ -103,12 +105,58 @@ const Home = () => (
               Morning Message
             </Card.Title>
             <Card.Text>Let's start our day with a morning message!</Card.Text>
-            <Link className="btn btn-success" to="/morning-message">
+            <Link className="btn btn-success" to="/morning/message">
               Play
             </Link>
           </Card.Body>
         </Card>
       </Col>
+      <Col>
+        <Card style={{ width: "18rem" }}>
+          <Card.Body>
+            <Card.Title>
+              <img
+                src={poem}
+                alt="Poem icon"
+                style={{
+                  width: "24px",
+                  height: "auto",
+                  marginRight: "5px",
+                  verticalAlign: "bottom"
+                }}
+              />
+              Morning Poem
+            </Card.Title>
+            <Card.Text>Let's brighten our day with a poem!</Card.Text>
+            <Link className="btn btn-success" to="/morning/poem">
+              Play
+            </Link>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col>
+        <Card style={{ width: "18rem" }}>
+          <Card.Body>
+            <Card.Title>
+              <img
+                src={calendar}
+                alt="Calendar icon"
+                style={{
+                  width: "24px",
+                  height: "auto",
+                  marginRight: "5px",
+                  verticalAlign: "bottom"
+                }}
+              />
+              Daily Calendar
+            </Card.Title>
+            <Card.Text>Let's check out our daily calendar!</Card.Text>
+            <Link className="btn btn-success" to="/calendar">
+              Play
+            </Link>
+          </Card.Body>
+        </Card>
+      </Col>{" "}
     </Row>
   </div>
 );
