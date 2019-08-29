@@ -221,11 +221,20 @@ textarea {
   .card {
     margin: 0 auto 16px auto;
   }
+  .hundreds-chart {
+    table-layout: fixed;
+  }
+  .hundreds-chart td {
+    padding: 0.3rem;
+  }
 }
 
 @media only screen and (max-width: 500px) {
   .fill-in-the-blank {
     display: block;
     margin: 0 auto;
+  }
+  .hundreds-chart td {
+    font-size: 0.9em;
   }
 }
