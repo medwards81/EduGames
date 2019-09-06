@@ -8,7 +8,8 @@ import {
   AsyncWeatherGraph,
   AsyncHundredsChart,
   AsyncMorningMessage,
-  AsyncNoMatch
+  AsyncNoMatch,
+  AsyncCalendar
 } from "../utils/loadableComponents";
 import { Link } from "react-router-dom";
 import logoColor from "../logo-color.svg";
@@ -42,6 +43,7 @@ function App() {
             <Route path="/weather-graph" component={AsyncWeatherGraph} />
             <Route path="/hundreds-chart" component={AsyncHundredsChart} />
             <Route path="/morning/:mode" component={AsyncMorningMessage} />
+            <Route path="/calendar" component={AsyncCalendar} />
             <Route component={AsyncNoMatch} />
           </Switch>
         </Container>

@@ -40,6 +40,22 @@ textarea {
   resize: none;
   overflow: auto;
 }
+#external-events {
+  width: 80%;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  background: #eee;
+}
+
+#external-events .fc-event {
+  margin: 1em 0;
+  cursor: move;
+}
+
+.Calendar table th,
+.Calendar table td {
+  border-color: #515151;
+}
 
 .content {
   flex: 1 0 auto; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
@@ -206,6 +222,48 @@ textarea {
 .ghosty {
   color: white !important;
   border-bottom: 2px solid #ccc !important;
+}
+
+.fc-toolbar h2 {
+  font-size: 2.5em !important;
+  margin-left: -2em !important;
+}
+
+.fc-day {
+  cursor: pointer;
+}
+
+.fc-day-top {
+  text-align: center;
+}
+
+.fc-day-number {
+  float: none !important;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.fc-event {
+  background: #fff !important;
+  color: #000 !important;
+  padding: 6px;
+}
+
+.fc-event-container a.fc-event {
+  border: none !important;
+}
+
+.fc-day,
+.fc-day-top {
+  cursor: pointer;
+}
+.fc-other-month .fc-day-number {
+  visibility: hidden !important;
+}
+
+.fc-day-number {
+  font-size: 2.8em !important;
+  cursor: pointer;
 }
 
 @keyframes fadein {

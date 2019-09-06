@@ -43,6 +43,10 @@ export const AsyncMorningMessage = MyLoadable({
   loader: () => import("../components/MorningMessage")
 });
 
+export const AsyncCalendar = MyLoadable({
+  loader: () => import("../components/Calendar")
+});
+
 export const AsyncNoMatch = MyLoadable({
   loader: () => import("../components/NoMatch")
 });

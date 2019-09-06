@@ -216,7 +216,7 @@ class WeatherGraph extends PureComponent {
               style={{ marginTop: "32px", padding: "16px" }}
             >
               <h3>
-                The season is
+                The season is{" "}
                 <Droppable
                   droppableId="droppableSeason"
                   type="season"
