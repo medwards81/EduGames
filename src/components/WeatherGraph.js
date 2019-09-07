@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import { storageTest } from "../utils/localStorage";
 import sunny from "../sunny.svg";
 import cloudy from "../cloudy.svg";
@@ -88,7 +89,7 @@ class WeatherGraph extends PureComponent {
   genTableBody = () => {
     const tableRow = [...Array(4).keys()];
     const tableCells = [];
-    [...Array(10).keys()].forEach(row => tableCells.push(tableRow));
+    [...Array(8).keys()].forEach(row => tableCells.push(tableRow));
     return tableCells.map((row, r) => {
       return (
         <tr key={r}>
@@ -146,6 +147,11 @@ class WeatherGraph extends PureComponent {
     return (
       <div className="WeatherGraph">
         <DragDropContext onDragEnd={this.onDragEnd}>
+          <div className="text-right">
+            <Link className="btn btn-sm btn-success" to="/days-in-school">
+              Next Game >
+            </Link>
+          </div>
           <h3 className="page-header">Weather Graph</h3>
           <table className="weather-table table table-bordered table-sm">
             <tfoot>
@@ -155,7 +161,7 @@ class WeatherGraph extends PureComponent {
                     src={sunny}
                     alt="Sunny icon"
                     style={{
-                      width: "50px",
+                      width: "40px",
                       height: "auto"
                     }}
                   />
@@ -167,7 +173,7 @@ class WeatherGraph extends PureComponent {
                     src={cloudy}
                     alt="Cloudy icon"
                     style={{
-                      width: "50px",
+                      width: "40px",
                       height: "auto"
                     }}
                   />
@@ -179,7 +185,7 @@ class WeatherGraph extends PureComponent {
                     src={rainy}
                     alt="Rainy icon"
                     style={{
-                      width: "50px",
+                      width: "40px",
                       height: "auto"
                     }}
                   />
@@ -192,7 +198,7 @@ class WeatherGraph extends PureComponent {
                     src={snowy}
                     alt="Snowy icon"
                     style={{
-                      width: "50px",
+                      width: "40px",
                       height: "auto"
                     }}
                   />
@@ -206,14 +212,14 @@ class WeatherGraph extends PureComponent {
           <div className="text-center">
             <Button
               variant="success"
-              style={{ marginTop: "16px" }}
+              style={{ marginTop: "4px" }}
               onClick={this.resetCellsClicked}
             >
               Reset Graph
             </Button>
             <div
               className="border rounded"
-              style={{ marginTop: "32px", padding: "16px" }}
+              style={{ marginTop: "20px", padding: "8px" }}
             >
               <h3>
                 The season is{" "}
@@ -264,7 +270,7 @@ class WeatherGraph extends PureComponent {
                   )}
                 </Droppable>
               </h3>
-              <h3 style={{ marginTop: "32px" }}>
+              <h3 style={{ marginTop: "20px" }}>
                 The weather is{" "}
                 <Droppable
                   droppableId="droppableWeather"
@@ -315,7 +321,7 @@ class WeatherGraph extends PureComponent {
               </h3>
               <div
                 className="mx-auto text-center"
-                style={{ padding: "16px", marginTop: "32px" }}
+                style={{ padding: "8px", marginTop: "32px" }}
               >
                 <Droppable
                   droppableId="season"

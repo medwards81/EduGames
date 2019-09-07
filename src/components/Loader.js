@@ -3,9 +3,8 @@ import { FadingCircle } from "better-react-spinkit";
 
 const Loader = props => {
   return (
-    <div className="panel-body text-center">
-      <FadingCircle size={props.size || 22} className="mvr-spinner" />
-      <div className="mvr-spinner-text">{props.message}</div>
+    <div className="text-center" style={{ width: "60px", margin: "0 auto" }}>
+      <FadingCircle size={props.size || 40} />
     </div>
   );
 };

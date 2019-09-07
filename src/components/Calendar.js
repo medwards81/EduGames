@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -169,7 +170,7 @@ class Calendar extends Component {
     );
   };
 
-  getEventImages = (title = "", widthPx = 35) => {
+  getEventImages = (title = "", widthPx = 30) => {
     const titles = title.split(",");
     const images = titles.map((title, idx) => (
       <span
@@ -190,7 +191,7 @@ class Calendar extends Component {
     const content = (
       <div
         className="text-center"
-        style={{ marginTop: "1.3em", cursor: "pointer" }}
+        style={{ marginTop: "0em", cursor: "pointer" }}
       >
         {this.getEventImages(event.title)}
       </div>
@@ -286,6 +287,11 @@ class Calendar extends Component {
 
     return (
       <div className="Calendar" style={{ marginTop: "-1em" }}>
+        <div className="text-right">
+          <Link className="btn btn-sm btn-success" to="/weather-graph">
+            Next Game >
+          </Link>
+        </div>
         <Row>
           <Col lg={3} sm={3} md={3} style={colStyle}>
             <div id="external-events">
@@ -349,19 +355,17 @@ class Calendar extends Component {
               drop={this.drop}
               eventReceive={this.eventReceive}
               datesRender={this.datesRender}
+              contentHeight={500}
             />
-            <div className="text-center" style={{ marginTop: "32px" }}>
-              &nbsp;
-            </div>
           </Col>
         </Row>
 
         <DragDropContext onDragEnd={this.onDragEnd}>
           <div
             className="text-center border rounded"
-            style={{ padding: "16px" }}
+            style={{ padding: "8px", marginTop: "16px" }}
           >
-            <h3>
+            <h4>
               Today is{" "}
               <Droppable droppableId="today" type="day" isDragDisabled={true}>
                 {(provided, snapshot) => (
@@ -389,8 +393,8 @@ class Calendar extends Component {
                   </span>
                 )}
               </Droppable>
-            </h3>
-            <h3 style={{ marginTop: "32px" }}>
+            </h4>
+            <h4 style={{ marginTop: "22px" }}>
               Tomorrow will be{" "}
               <Droppable
                 droppableId="tomorrow"
@@ -422,8 +426,8 @@ class Calendar extends Component {
                   </span>
                 )}
               </Droppable>
-            </h3>
-            <h3 style={{ marginTop: "32px" }}>
+            </h4>
+            <h4 style={{ marginTop: "22px" }}>
               Yesterday was{" "}
               <Droppable
                 droppableId="yesterday"
@@ -455,114 +459,116 @@ class Calendar extends Component {
                   </span>
                 )}
               </Droppable>
-            </h3>
-          </div>
-          <div
-            className="mx-auto text-center"
-            style={{ padding: "16px", marginTop: "32px" }}
-          >
-            <Droppable droppableId="day" type="day" direction="horizontal">
-              {(provided, snapshot) => (
-                <div
-                  className="day-droppable"
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  <Draggable draggableId="sunday" index={0}>
-                    {(provided, snapshot) => (
-                      <span
-                        id="sunday"
-                        className="weather-draggable border border-success rounded p-1 mr-2 border-2"
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        Sunday
-                      </span>
-                    )}
-                  </Draggable>
-                  <Draggable draggableId="monday" index={1}>
-                    {(provided, snapshot) => (
-                      <span
-                        id="monday"
-                        className="weather-draggable border border-success rounded p-1 mr-2 border-2"
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        Monday
-                      </span>
-                    )}
-                  </Draggable>
-                  <Draggable draggableId="tuesday" index={2}>
-                    {(provided, snapshot) => (
-                      <span
-                        id="tuesday"
-                        className="weather-draggable border border-success rounded p-1 mr-2 border-2"
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        Tuesday
-                      </span>
-                    )}
-                  </Draggable>
-                  <Draggable draggableId="wednesday" index={3}>
-                    {(provided, snapshot) => (
-                      <span
-                        id="wednesday"
-                        className="weather-draggable border border-success rounded p-1 mr-2 border-2"
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        Wednesday
-                      </span>
-                    )}
-                  </Draggable>
-                  <Draggable draggableId="thursday" index={4}>
-                    {(provided, snapshot) => (
-                      <span
-                        id="thursday"
-                        className="weather-draggable border border-success rounded p-1 mr-2 border-2"
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        Thursday
-                      </span>
-                    )}
-                  </Draggable>
-                  <Draggable draggableId="friday" index={5}>
-                    {(provided, snapshot) => (
-                      <span
-                        id="friday"
-                        className="weather-draggable border border-success rounded p-1 mr-2 border-2"
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        Friday
-                      </span>
-                    )}
-                  </Draggable>
-                  <Draggable draggableId="saturday" index={6}>
-                    {(provided, snapshot) => (
-                      <span
-                        id="saturday"
-                        className="weather-draggable border border-success rounded p-1 mr-2 border-2"
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        Saturday
-                      </span>
-                    )}
-                  </Draggable>
-                  <div style={{ display: "none" }}>{provided.placeholder}</div>
-                </div>
-              )}
-            </Droppable>
+            </h4>
+            <div
+              className="mx-auto text-center"
+              style={{ padding: "16px", marginTop: "22px" }}
+            >
+              <Droppable droppableId="day" type="day" direction="horizontal">
+                {(provided, snapshot) => (
+                  <div
+                    className="day-droppable"
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+                    <Draggable draggableId="sunday" index={0}>
+                      {(provided, snapshot) => (
+                        <span
+                          id="sunday"
+                          className="weather-draggable border border-success rounded p-1 mr-2 border-2"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          Sunday
+                        </span>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="monday" index={1}>
+                      {(provided, snapshot) => (
+                        <span
+                          id="monday"
+                          className="weather-draggable border border-success rounded p-1 mr-2 border-2"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          Monday
+                        </span>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="tuesday" index={2}>
+                      {(provided, snapshot) => (
+                        <span
+                          id="tuesday"
+                          className="weather-draggable border border-success rounded p-1 mr-2 border-2"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          Tuesday
+                        </span>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="wednesday" index={3}>
+                      {(provided, snapshot) => (
+                        <span
+                          id="wednesday"
+                          className="weather-draggable border border-success rounded p-1 mr-2 border-2"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          Wednesday
+                        </span>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="thursday" index={4}>
+                      {(provided, snapshot) => (
+                        <span
+                          id="thursday"
+                          className="weather-draggable border border-success rounded p-1 mr-2 border-2"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          Thursday
+                        </span>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="friday" index={5}>
+                      {(provided, snapshot) => (
+                        <span
+                          id="friday"
+                          className="weather-draggable border border-success rounded p-1 mr-2 border-2"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          Friday
+                        </span>
+                      )}
+                    </Draggable>
+                    <Draggable draggableId="saturday" index={6}>
+                      {(provided, snapshot) => (
+                        <span
+                          id="saturday"
+                          className="weather-draggable border border-success rounded p-1 mr-2 border-2"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          Saturday
+                        </span>
+                      )}
+                    </Draggable>
+                    <div style={{ display: "none" }}>
+                      {provided.placeholder}
+                    </div>
+                  </div>
+                )}
+              </Droppable>
+            </div>
           </div>
         </DragDropContext>
       </div>

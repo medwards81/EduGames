@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import { storageTest } from "../utils/localStorage";
 
 class HundredsChart extends PureComponent {
@@ -149,6 +150,11 @@ class HundredsChart extends PureComponent {
   render() {
     return (
       <div className="HundredsChart">
+        <div className="text-right">
+          <Link className="btn btn-sm btn-success" to="/morning/poem">
+            Next Game >
+          </Link>
+        </div>
         <h3 className="page-header">Hundreds Chart</h3>
         <table className="hundreds-chart table table-bordered">
           <tbody>{this.genTableBody()}</tbody>

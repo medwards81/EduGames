@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import { storageTest } from "../utils/localStorage";
 import ghost from "../ghost.svg";
 
@@ -120,6 +121,10 @@ class MorningMessage extends PureComponent {
     this.setState({ fontSizeEm });
   };
 
+  goToMessage = () => {
+    window.location.replace("/morning/message");
+  };
+
   render() {
     const {
       words,
@@ -138,10 +143,25 @@ class MorningMessage extends PureComponent {
     };
     return (
       <div className="MorningMessage">
+        <div className="text-right">
+          {this.morningMode === "poem" ? (
+            <Button
+              variant="success"
+              className="btn-sm"
+              onClick={this.goToMessage}
+            >
+              Next Game >
+            </Button>
+          ) : (
+            <Link className="btn btn-sm btn-success" to="/calendar">
+              Next Game >
+            </Link>
+          )}
+        </div>
         <h3 className="page-header">Morning {this.lsKey}</h3>
         <div style={{ marginBottom: "1em" }}>
           {isEditMode ? (
-            <div className="text-right">
+            <div className="text-center">
               <textarea
                 ref={this.wordsRef}
                 style={{

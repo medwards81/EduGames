@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import onesImg from "../unit.jpg";
 import hundredsImg from "../hundreds.png";
 import tensImg from "../tens.png";
@@ -166,6 +167,11 @@ class DaysInSchool extends Component {
     return (
       <div className="DaysInSchool">
         <DragDropContext onDragEnd={this.onDragEnd}>
+          <div className="text-right">
+            <Link className="btn btn-sm btn-success" to="/hundreds-chart">
+              Next Game >
+            </Link>
+          </div>
           <h3 className="page-header">
             Today, we have been in school for{" "}
             <span className="days-in-school-num">{this.getCount()}</span> days!
