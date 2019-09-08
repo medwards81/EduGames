@@ -287,7 +287,7 @@ class Calendar extends Component {
 
     return (
       <div className="Calendar" style={{ marginTop: "-1em" }}>
-        <div className="text-right">
+        <div className="text-right" style={{ marginBottom: "-40px" }}>
           <Link className="btn btn-sm btn-success" to="/weather-graph">
             Next Game >
           </Link>
@@ -373,7 +373,8 @@ class Calendar extends Component {
                     className="fill-in-the-blank"
                     style={{
                       width: "180px",
-                      color: "#28a745"
+                      color: "#28a745",
+                      height: "40px"
                     }}
                     ref={provided.innerRef}
                     {...provided.droppableProps}
@@ -406,7 +407,8 @@ class Calendar extends Component {
                     className="fill-in-the-blank"
                     style={{
                       width: "180px",
-                      color: "#28a745"
+                      color: "#28a745",
+                      height: "40px"
                     }}
                     ref={provided.innerRef}
                     {...provided.droppableProps}
@@ -439,7 +441,8 @@ class Calendar extends Component {
                     className="fill-in-the-blank"
                     style={{
                       width: "180px",
-                      color: "#28a745"
+                      color: "#28a745",
+                      height: "40px"
                     }}
                     ref={provided.innerRef}
                     {...provided.droppableProps}
