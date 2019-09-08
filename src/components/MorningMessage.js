@@ -159,7 +159,7 @@ class MorningMessage extends PureComponent {
           )}
         </div>
         <h3 className="page-header">Morning {this.lsKey}</h3>
-        <div style={{ marginBottom: "1em" }}>
+        <div style={{ marginBottom: "1em", fontFamily: "Chilanka" }}>
           {isEditMode ? (
             <div className="text-center">
               <textarea
