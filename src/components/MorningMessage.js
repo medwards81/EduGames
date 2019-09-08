@@ -174,11 +174,7 @@ class MorningMessage extends PureComponent {
                 }}
                 defaultValue={this.getWordsFormatted()}
               />
-              <Button
-                variant="success"
-                onClick={this.updateWords}
-                style={{ width: "75px" }}
-              >
+              <Button variant="success" onClick={this.updateWords}>
                 Update
               </Button>
             </div>
