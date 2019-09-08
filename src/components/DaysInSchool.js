@@ -172,7 +172,7 @@ class DaysInSchool extends Component {
               Next Game >
             </Link>
           </div>
-          <h3 className="page-header">
+          <h3 className="page-header" style={{ marginTop: "2em" }}>
             Today, we have been in school for{" "}
             <span className="days-in-school-num">{this.getCount()}</span> days!
           </h3>

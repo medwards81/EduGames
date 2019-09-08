@@ -13,7 +13,7 @@ class MorningMessage extends PureComponent {
     words: [],
     currentColor: "red",
     isEditMode: false,
-    fontSizeEm: 1.5,
+    fontSizeEm: 1.8,
     isGhostyMode: false,
     morningMode: this.morningMode
   };
@@ -158,7 +158,9 @@ class MorningMessage extends PureComponent {
             </Link>
           )}
         </div>
-        <h3 className="page-header">Morning {this.lsKey}</h3>
+        <h3 className="page-header" style={{ marginTop: "4em" }}>
+          Morning {this.lsKey}
+        </h3>
         <div style={{ marginBottom: "1em" }}>
           {isEditMode ? (
             <div className="text-center">
