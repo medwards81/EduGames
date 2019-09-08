@@ -286,12 +286,13 @@ class Calendar extends Component {
     const colStyle = shouldShowExternalEvents ? {} : { display: "none" };
 
     return (
-      <div className="Calendar" style={{ marginTop: "-1em" }}>
+      <div className="Calendar" style={{ marginTop: "-1.3em" }}>
+        {/*
         <div className="text-right" style={{ marginBottom: "-40px" }}>
           <Link className="btn btn-sm btn-success" to="/weather-graph">
             Next Game >
           </Link>
-        </div>
+        </div>*/}
         <Row>
           <Col lg={3} sm={3} md={3} style={colStyle}>
             <div id="external-events">
@@ -324,6 +325,13 @@ class Calendar extends Component {
             </div>
           </Col>
           <Col>
+            <Link
+              className="btn btn-sm btn-success"
+              to="/weather-graph"
+              style={{ float: "right" }}
+            >
+              Next Game >
+            </Link>
             {!shouldShowExternalEvents && (
               <Button
                 variant="link"
