@@ -159,7 +159,7 @@ class MorningMessage extends PureComponent {
           )}
         </div>
         <h3 className="page-header">Morning {this.lsKey}</h3>
-        <div style={{ marginBottom: "1em", fontFamily: "Chilanka" }}>
+        <div style={{ marginBottom: "1em" }}>
           {isEditMode ? (
             <div className="text-center">
               <textarea
@@ -167,7 +167,8 @@ class MorningMessage extends PureComponent {
                 style={{
                   ...contentStyle,
                   border: "4px dashed",
-                  outline: "none"
+                  outline: "none",
+                  fontFamily: "Chilanka"
                 }}
                 defaultValue={this.getWordsFormatted()}
               />
@@ -184,7 +185,8 @@ class MorningMessage extends PureComponent {
               style={{
                 ...contentStyle,
                 background: "#fff",
-                border: "4px solid #ccc"
+                border: "4px solid #ccc",
+                fontFamily: "Chilanka"
               }}
             >
               {words.map((word, idx) => {
