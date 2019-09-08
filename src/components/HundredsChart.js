@@ -8,6 +8,12 @@ class HundredsChart extends PureComponent {
     if (numberEle) numberEle.classList.toggle("invisible");
   };
 
+  handleNumberClick = event => {
+    event.preventDefault();
+    const numberEle = event.target;
+    numberEle.classList.toggle("invisible");
+  };
+
   genTableBody = () => {
     const tableRow = [...Array(10).keys()];
     const tableCells = [];
@@ -20,7 +26,9 @@ class HundredsChart extends PureComponent {
             const cellId = `${r}-${c}`;
             return (
               <td id={cellId} key={c} onClick={this.handleCellClick}>
-                <span className="number">{++currentNum}</span>
+                <span className="number" onClick={this.handleNumberClick}>
+                  {++currentNum}
+                </span>
               </td>
             );
           })}
