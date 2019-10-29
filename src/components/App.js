@@ -9,7 +9,8 @@ import {
   AsyncHundredsChart,
   AsyncMorningMessage,
   AsyncNoMatch,
-  AsyncCalendar
+  AsyncCalendar,
+  AsyncMakingWords
 } from "../utils/loadableComponents";
 import { Link } from "react-router-dom";
 import logoColor from "../logo-color.svg";
@@ -44,6 +45,7 @@ function App() {
             <Route path="/hundreds-chart" component={AsyncHundredsChart} />
             <Route path="/morning/:mode" component={AsyncMorningMessage} />
             <Route path="/calendar" component={AsyncCalendar} />
+            <Route path="/making-words" component={AsyncMakingWords} />
             <Route component={AsyncNoMatch} />
           </Switch>
         </Container>

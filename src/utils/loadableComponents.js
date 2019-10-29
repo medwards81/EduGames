@@ -47,6 +47,10 @@ export const AsyncCalendar = MyLoadable({
   loader: () => import("../components/Calendar")
 });
 
+export const AsyncMakingWords = MyLoadable({
+  loader: () => import("../components/MakingWords")
+});
+
 export const AsyncNoMatch = MyLoadable({
   loader: () => import("../components/NoMatch")
 });

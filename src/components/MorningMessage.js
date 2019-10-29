@@ -121,10 +121,6 @@ class MorningMessage extends PureComponent {
     this.setState({ fontSizeEm });
   };
 
-  goToMessage = () => {
-    window.location.replace("/morning/message");
-  };
-
   render() {
     const {
       words,
@@ -145,13 +141,9 @@ class MorningMessage extends PureComponent {
       <div className="MorningMessage">
         <div className="text-right">
           {this.morningMode === "poem" ? (
-            <Button
-              variant="success"
-              className="btn-sm"
-              onClick={this.goToMessage}
-            >
+            <Link className="btn btn-sm btn-success" to="/making-words">
               Next Game >
-            </Button>
+            </Link>
           ) : (
             <Link className="btn btn-sm btn-success" to="/calendar">
               Next Game >

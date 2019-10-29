@@ -9,6 +9,7 @@ import hundredsChart from "../hundreds-chart.svg";
 import speaker from "../loudspeaker.svg";
 import poem from "../poem.svg";
 import calendar from "../calendar.svg";
+import blocks from "../blocks.svg";
 
 const Home = () => (
   <div className="Home">
@@ -152,6 +153,33 @@ const Home = () => (
             </Card.Title>
             <Card.Text>Let's brighten our day with a poem!</Card.Text>
             <Link className="btn btn-success" to="/morning/poem">
+              Play
+            </Link>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+    <Row>
+      <Col>
+        <Card style={{ width: "18rem" }}>
+          <Card.Body>
+            <Card.Title>
+              <img
+                src={blocks}
+                alt="Blocks icon"
+                style={{
+                  width: "26px",
+                  height: "auto",
+                  marginRight: "5px",
+                  verticalAlign: "bottom"
+                }}
+              />
+              Making Words
+            </Card.Title>
+            <Card.Text>
+              Let's make some words with consonants, vowels and digraphs!
+            </Card.Text>
+            <Link className="btn btn-success" to="/making-words">
               Play
             </Link>
           </Card.Body>

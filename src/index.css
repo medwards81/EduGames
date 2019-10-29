@@ -266,6 +266,33 @@ textarea {
   cursor: pointer;
 }
 
+.MakingWords .row {
+  margin-bottom: 8px;
+}
+
+.making-words-draggable {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 42px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 24px;
+}
+
+.consonant {
+  background: yellow;
+}
+
+.vowel {
+  background: red;
+}
+
+.digraph {
+  background: green;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
