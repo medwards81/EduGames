@@ -160,8 +160,16 @@ textarea {
   margin-bottom: -12px;
 }
 
-.fill-in-the-blank > .weather-draggable {
+.fill-in-the-blank > .weather-draggable,
+.fill-in-the-blank > .making-words-draggable {
   transform: none !important;
+}
+
+.fill-in-the-blank.letter {
+  width: 60px;
+  height: 60px;
+  margin-right: 12px;
+  margin-bottom: -28px;
 }
 
 .weather-table.table-bordered {

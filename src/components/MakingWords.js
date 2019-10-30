@@ -7,31 +7,47 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 class MakingWords extends PureComponent {
   state = {
-    letters: []
+    letter1: {},
+    letter2: {},
+    letter3: {},
+    letter4: {}
   };
 
-  addDropped = (id, type) => {
+  addDropped = (letterNumber, letter, letterType) => {
+    const stateKey = `letter${letterNumber}`;
     this.setState({
-      letters: [...this.state.letters, { id, type }]
+      [stateKey]: { id: letter, type: letterType }
     });
   };
 
   addLetter = e => {
+    const letterNumbers = [1, 2, 3, 4];
+    let letterNumberAvailable;
+    for (let i = 1; i <= letterNumbers.length; i++) {
+      if (this.state[`letter${i}`].type === undefined) {
+        letterNumberAvailable = i;
+        break;
+      }
+    }
+
+    if (!letterNumberAvailable) return;
+
     const ele = e.target;
-    this.addDropped(ele.id, ele.dataset.type);
+    const letter = ele.id;
+    const letterType = ele.dataset.type;
+    this.addDropped(letterNumberAvailable, letter, letterType);
   };
 
   removeLetter = e => {
     const ele = e.target;
-    const letterIndex = ele.dataset.index;
-    const updatedLetters = [...this.state.letters];
-    updatedLetters.splice(letterIndex, 1);
+    const letterNumber = ele.dataset.letterNumber;
     this.setState({
-      letters: updatedLetters
+      [`letter${letterNumber}`]: {}
     });
   };
 
-  resetLetters = () => this.setState({ letters: [] });
+  resetLetters = () =>
+    this.setState({ letter1: {}, letter2: {}, letter3: {}, letter4: {} });
 
   onDragEnd = result => {
     const { destination, draggableId, source } = result;
@@ -39,25 +55,44 @@ class MakingWords extends PureComponent {
     if (!destination) return;
     if (destination.droppableId === source.droppableId) return;
 
-    this.addDropped(draggableId, source.droppableId);
+    const letterNumber = destination.droppableId.split("-")[1];
+    const letter = draggableId;
+    const letterType = source.droppableId;
+    this.addDropped(letterNumber, letter, letterType);
   };
 
-  renderLetters = () => {
-    const { letters } = this.state;
-
-    if (!letters.length > 0) return <span>&nbsp;</span>;
-
-    return letters.map((letter, i) => (
-      <span
-        key={`${letter.id}-${i}`}
-        data-index={i}
-        className={`making-words-draggable ${letter.type}`}
-        style={{ marginRight: "6px" }}
-        onDoubleClick={this.removeLetter}
-      >
-        {letter.id}
-      </span>
-    ));
+  renderLetterDroppables = () => {
+    const letterNumbers = [1, 2, 3, 4];
+    return letterNumbers.map(letterNumber => {
+      const stateLetter = this.state[`letter${letterNumber}`];
+      return (
+        <Droppable
+          key={letterNumber}
+          droppableId={`letter-${letterNumber}`}
+          direction="horizontal"
+          type="letter"
+        >
+          {(provided, snapshot) => (
+            <span
+              className="fill-in-the-blank letter"
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              {stateLetter.type && (
+                <span
+                  data-letter-number={letterNumber}
+                  className={`making-words-draggable ${stateLetter.type}`}
+                  onDoubleClick={this.removeLetter}
+                >
+                  {stateLetter.id}
+                </span>
+              )}
+              <div style={{ display: "none" }}>{provided.placeholder}</div>
+            </span>
+          )}
+        </Droppable>
+      );
+    });
   };
 
   renderCols = (items = [], indexStart = 0, className = "") => {
@@ -95,7 +130,7 @@ class MakingWords extends PureComponent {
               Next Game >
             </Link>
           </div>
-          <h3 className="page-header" style={{ margintop: "4em" }}>
+          <h3 className="page-header" style={{ marginTop: "3em" }}>
             Making Words
           </h3>
           <Row>
@@ -212,29 +247,103 @@ class MakingWords extends PureComponent {
                   marginTop: "20px",
                   border: "4px solid #ccc",
                   height: "154px",
-                  lineHeight: "154px",
                   textAlign: "center",
                   overflow: "hidden"
                 }}
               >
-                <Droppable
-                  droppableId="letter"
-                  direction="horizontal"
-                  type="letter"
+                <div
+                  className="droppables-wrapper"
+                  style={{ marginTop: "40px" }}
                 >
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.droppableProps}
-                      style={{ height: "100%" }}
-                    >
-                      {this.renderLetters()}
-                      <div style={{ display: "none" }}>
-                        {provided.placeholder}
-                      </div>
-                    </div>
-                  )}
-                </Droppable>
+                  {this.renderLetterDroppables()}
+                  {/*
+                  <Droppable
+                    droppableId="letter-1"
+                    direction="horizontal"
+                    type="letter"
+                  >
+                    {(provided, snapshot) => (
+                      <span
+                        className="fill-in-the-blank letter"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                      >
+                        {letter1.type && (
+                          <span
+                            data-letter-number="1"
+                            className={`making-words-draggable ${letter1.type}`}
+                            onDoubleClick={this.removeLetter}
+                          >
+                            {letter1.id}
+                          </span>
+                        )}
+                        <div style={{ display: "none" }}>
+                          {provided.placeholder}
+                        </div>
+                      </span>
+                    )}
+                  </Droppable>
+                  <Droppable
+                    droppableId="letter-2"
+                    direction="horizontal"
+                    type="letter"
+                  >
+                    {(provided, snapshot) => (
+                      <span
+                        className="fill-in-the-blank letter"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                      >
+                        {letter2.type && (
+                          <span
+                            data-letter-number="1"
+                            className={`making-words-draggable ${letter2.type}`}
+                            onDoubleClick={this.removeLetter}
+                          >
+                            {letter2.id}
+                          </span>
+                        )}
+                        <div style={{ display: "none" }}>
+                          {provided.placeholder}
+                        </div>
+                      </span>
+                    )}
+                  </Droppable>
+                  <Droppable
+                    droppableId="letter-3"
+                    direction="horizontal"
+                    type="letter"
+                  >
+                    {(provided, snapshot) => (
+                      <span
+                        className="fill-in-the-blank letter"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                      >
+                        <div style={{ display: "none" }}>
+                          {provided.placeholder}
+                        </div>
+                      </span>
+                    )}
+                  </Droppable>
+                  <Droppable
+                    droppableId="letter-4"
+                    direction="horizontal"
+                    type="letter"
+                  >
+                    {(provided, snapshot) => (
+                      <span
+                        className="fill-in-the-blank letter"
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                      >
+                        <div style={{ display: "none" }}>
+                          {provided.placeholder}
+                        </div>
+                      </span>
+                    )}
+                  </Droppable>*/}
+                </div>
               </div>
               <div className="text-right">
                 <Button
