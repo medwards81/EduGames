@@ -131,7 +131,7 @@ class MorningMessage extends PureComponent {
     } = this.state;
     const contentStyle = {
       width: "100%",
-      height: "26rem",
+      height: "31rem",
       borderRadius: "8px",
       fontSize: `${fontSizeEm}em`,
       padding: "16px",
